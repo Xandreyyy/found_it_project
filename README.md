@@ -1,2 +1,6 @@
-# found_it_project
-Program that try to notify you if someone found your lost item, like a "Found and Lost" system.
+# FOUND IT
+
+O "Found It" é um software que tem como objetivo auxiliar as pessoas encontrarem seus itens perdidos em qualquer
+parte do mundo!
+
+### CAUSA
