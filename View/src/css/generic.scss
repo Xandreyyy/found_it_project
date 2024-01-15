@@ -1,0 +1,15 @@
+@use "config/reset.scss";
+
+.black-btn{
+    background-color: black;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    padding: 0.8em;
+}
+
+.white-btn{
+    @extend .black-btn;
+    background-color: white;
+    color: black;
+}
