@@ -2,17 +2,19 @@
 
 header{
     background: rgba(32, 32, 32, 0.87);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     font-family: sans-serif;
     padding-block: 0.5em;
     padding-inline: 4em;
-    img{
-        border: 3px solid rgba(228, 228, 228, 0.81);
-        border-radius: 100%;
-        padding: 2px;
-        width: 68px;
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        img{
+            border: 3px solid rgba(228, 228, 228, 0.81);
+            border-radius: 100%;
+            padding: 2px;
+            width: 68px;
+        }
     }
 }
 
@@ -31,6 +33,8 @@ header ul li{
     width: 200px;
 }
 
-#main-menu img{
+#main-menu{
     width: 100%;
+    background-image: url(https://placeholder.com/1300x360);
+    background-repeat: no-repeat;
 }

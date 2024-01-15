@@ -1,5 +1,11 @@
 @use "config/reset.scss";
 
+.container{
+    max-width: 1360px;
+    width: 100%;
+    margin-inline: auto;
+}
+
 .black-btn{
     background-color: black;
     border-radius: 4px;
