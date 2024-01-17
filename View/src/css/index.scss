@@ -30,11 +30,21 @@ header ul li{
 }
 
 .btn-icon{
-    width: 200px;
+    width: 150px;
 }
 
 #main-menu{
     width: 100%;
-    background-image: url(https://placeholder.com/1300x360);
+    height: max-content;
+    background-image: url(https://placeholder.com/1400x350);
     background-repeat: no-repeat;
+}
+
+#main-menu-line{
+    height: 3px;
+    width: 100%;
+    top: 50%;
+    left: 0%;
+    right: 0%;
+    background-color: orange;
 }

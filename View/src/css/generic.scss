@@ -1,7 +1,7 @@
 @use "config/reset.scss";
 
 .container{
-    max-width: 1360px;
+    max-width: 1440px;
     width: 100%;
     margin-inline: auto;
 }
@@ -18,4 +18,35 @@
     @extend .black-btn;
     background-color: white;
     color: black;
+}
+
+.flex{
+    display: flex;
+}
+
+.aj-center{
+    @extend .flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.j-center{
+    @extend .flex;
+    justify-content: center;
+}
+
+.relative{
+    position: relative;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.col-gap1{
+    column-gap: 4rem;
+}
+
+.col-gap2{
+    column-gap: 8rem;
 }
