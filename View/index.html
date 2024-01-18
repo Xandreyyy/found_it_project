@@ -22,11 +22,40 @@
         </div>
     </header>
     <section id="main-menu" class="container">
-        <div class="btns-wrapper j-center col-gap1 relative">
-            <span id="main-menu-line absolute"></span>
+        <div class="j-center col-gap1 relative">
+            <span id="main-menu-line"></span>
             <button id="lost_item"><img src="./src/lib/icon_buttons/lost_btn_icon.svg" alt="Lost item icon" class="btn-icon"></button>
             <button id="found_item"><img src="./src/lib/icon_buttons/found_btn_icon.svg" alt="Found item icon" class="btn-icon"></button>
         </div>
     </section>
+    <main class="container">
+        <h1>ONDE VOCÊ PERDEU?</h1>
+        <form>
+            <div>
+                <button class="zoom-opt">+</button>
+                <button class="zoom-opt">-</button>
+            </div>
+            <iframe src="#" frameborder="0" style="width: 1024px; height: 300px; border: 1px solid black;"></iframe>
+            <div class="ipt-wraPPER">
+                <label for="location">Qual foi o lugar?</label>
+                <input type="text" id="location">
+            </div>
+            <div class="ipt-wrapper">
+                <label for="item">Digite o item perdido:</label>
+                <input type="text" id="item">
+            </div>
+            <div class="ipt-wrapper">
+                <label for="itemDesc">Nos conte mais sobre esse item:</label>
+                <textarea id="itemDesc" cols="30" rows="10"></textarea>
+            </div>
+            <div class="ipt-wrapper">
+                <label for="contact">Por onde podemos contactar você?</label>
+                <input type="text" id="contact">
+            </div>
+            <button type="submit">ENVIAR</button>
+        </form>
+    </main>
+    <footer>
+    </footer>
 </body>
 </html>

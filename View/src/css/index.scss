@@ -41,10 +41,18 @@ header ul li{
 }
 
 #main-menu-line{
+    position: absolute;
     height: 3px;
     width: 100%;
     top: 50%;
-    left: 0%;
-    right: 0%;
     background-color: orange;
+}
+
+.zoom-opt{
+    width: 60px;
+    height: 25px;
+}
+
+.ipt-wrapper > *{
+    display: block;
 }

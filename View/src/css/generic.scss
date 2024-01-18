@@ -24,6 +24,11 @@
     display: flex;
 }
 
+.col{
+    @extend .flex;
+    flex-direction: column;
+}
+
 .aj-center{
     @extend .flex;
     align-items: center;
