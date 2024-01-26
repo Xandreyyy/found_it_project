@@ -38,6 +38,7 @@ header ul li{
     height: max-content;
     background-image: url(https://placeholder.com/1400x350);
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #main-menu-line{
@@ -45,7 +46,11 @@ header ul li{
     height: 3px;
     width: 100%;
     top: 50%;
-    background-color: orange;
+    background-color: #969696;
+}
+
+.main-btn{
+    z-index: 2;
 }
 
 .zoom-opt{
