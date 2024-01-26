@@ -29,14 +29,19 @@
     flex-direction: column;
 }
 
-.aj-center{
+.a-center{
     @extend .flex;
     align-items: center;
-    justify-content: center;
 }
 
 .j-center{
     @extend .flex;
+    justify-content: center;
+}
+
+.aj-center{
+    @extend .flex;
+    align-items: center;
     justify-content: center;
 }
 
