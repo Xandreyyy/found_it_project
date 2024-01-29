@@ -1,69 +1,45 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Found It - home</title>
-    <link rel="stylesheet" href="./build/index.css">
-    <script src="./src/js/index.js" defer></script>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <img src="./src/lib/gray_logo.svg" alt="Found It icon">
-            <button id="hamburger">
-                <span class="span1"></span>
-                <span class="span2"></span>
-                <span class="span3"></span>
-            </button>
-            <nav class="aj-center">
-                <ul class="relative">
-                    <li><a href="#" class="black-btn">CRIAR</a></li>
-                    <li><a href="#" class="black-btn">SUPORTE</a></li>
-                    <li><a href="#" class="black-btn">SOBRE</a></li>
-                    <li><a href="#" class="white-btn">ENTRAR</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <section id="main-menu" class="container a-center">
-        <div class="j-center col-gap1 relative">
-            <span id="main-menu-line"></span>
-            <button id="lost_item" class="main-btn"><img src="./src/lib/icon_buttons/lost_btn_icon.svg" alt="Lost item icon" class="btn-icon"></button>
-            <button id="found_item" class="main-btn"><img src="./src/lib/icon_buttons/found_btn_icon.svg" alt="Found item icon" class="btn-icon"></button>
-        </div>
-    </section>
-    <main class="container">
-        <h1>ONDE VOCÊ PERDEU?</h1>
-        <form class="col">
-            <div>
+{% extends "header.html" %}
+{% load static %}
+{% block content %}
+        <link rel="stylesheet" href={% static "index.css" %}>
+        <section id="main-menu" class="container a-center">
+            <div class="j-center col-gap1 relative">
+                <span id="main-menu-line"></span>
+                <button id="lost_item" class="main-btn"><img src="./src/lib/icon_buttons/lost_btn_icon.svg" alt="Lost item icon" class="btn-icon"></button>
+                <button id="found_item" class="main-btn"><img src="./src/lib/icon_buttons/found_btn_icon.svg" alt="Found item icon" class="btn-icon"></button>
+            </div>
+        </section>
+        <main class="container">
+            <h1>ONDE VOCÊ PERDEU?</h1>
+            <form class="col">
                 <div>
-                    <button class="area-opt">+</button>
-                    <button class="area-opt">-</button>
+                    <div>
+                        <button class="area-opt">+</button>
+                        <button class="area-opt">-</button>
+                    </div>
+                    <iframe src="" frameborder="0"></iframe>
                 </div>
-                <iframe src="" frameborder="0"></iframe>
-            </div>
-            <div class="field-wrapper">
-                <label for="location">Qual foi o lugar?</label>
-                <input type="text" id="location" placeholder="Insira o local">
-            </div>
-            <div class="field-wrapper">
-                <label for="item">Digite o item perdido:</label>
-                <input type="text" id="item" placeholder="O que você perdeu?">
-            </div>
-            <div class="field-wrapper">
-                <label for="itemDesc">Nos conte mais sobre esse item:</label>
-                <textarea id="itemDesc" cols="30" rows="10" placeholder="Insira uma descrição sobre ele"></textarea>
-            </div>
-            <div class="field-wrapper">
-                <label for="contact">Por onde podemos contactar você?</label>
-                <input type="text" id="contact" placeholder="Digite um contato">
-            </div>
-            <button type="submit">ENVIAR</button>
-        </form>
-    </main>
-    <footer>
-    </footer>
-</body>
-</html>
+                <div class="field-wrapper">
+                    <label for="location">Qual foi o lugar?</label>
+                    <input type="text" id="location" placeholder="Insira o local">
+                </div>
+                <div class="field-wrapper">
+                    <label for="item">Digite o item perdido:</label>
+                    <input type="text" id="item" placeholder="O que você perdeu?">
+                </div>
+                <div class="field-wrapper">
+                    <label for="itemDesc">Nos conte mais sobre esse item:</label>
+                    <textarea id="itemDesc" cols="30" rows="10" placeholder="Insira uma descrição sobre ele"></textarea>
+                </div>
+                <div class="field-wrapper">
+                    <label for="contact">Por onde podemos contactar você?</label>
+                    <input type="text" id="contact" placeholder="Digite um contato">
+                </div>
+                <button type="submit">ENVIAR</button>
+            </form>
+        </main>
+        <footer>
+        </footer>
+    </body>
+    </html>
+{% endblock content %}
