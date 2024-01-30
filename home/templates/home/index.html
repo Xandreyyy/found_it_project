@@ -1,12 +1,12 @@
 {% extends "header.html" %}
 {% load static %}
 {% block content %}
-        <link rel="stylesheet" href={% static "index.css" %}>
+        <link rel="stylesheet" href={% static "home/css/style.css" %}>
         <section id="main-menu" class="container a-center">
             <div class="j-center col-gap1 relative">
                 <span id="main-menu-line"></span>
-                <button id="lost_item" class="main-btn"><img src="./src/lib/icon_buttons/lost_btn_icon.svg" alt="Lost item icon" class="btn-icon"></button>
-                <button id="found_item" class="main-btn"><img src="./src/lib/icon_buttons/found_btn_icon.svg" alt="Found item icon" class="btn-icon"></button>
+                <button id="lost_item" class="main-btn"><img src={% static "home/icon_buttons/lost_btn_icon.svg" %} alt="Lost item icon" class="btn-icon"></button>
+                <button id="found_item" class="main-btn"><img src={% static "home/icon_buttons/found_btn_icon.svg" %} alt="Found item icon" class="btn-icon"></button>
             </div>
         </section>
         <main class="container">
@@ -17,7 +17,7 @@
                         <button class="area-opt">+</button>
                         <button class="area-opt">-</button>
                     </div>
-                    <iframe src="" frameborder="0"></iframe>
+                    {% include "map.html" %}
                 </div>
                 <div class="field-wrapper">
                     <label for="location">Qual foi o lugar?</label>
