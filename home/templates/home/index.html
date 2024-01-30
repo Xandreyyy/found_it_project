@@ -11,7 +11,7 @@
         </section>
         <main class="container">
             <h1>ONDE VOCÊ PERDEU?</h1>
-            <form class="col">
+            <form class="col" action="." method="post">
                 <div>
                     <div>
                         <button class="area-opt">+</button>
@@ -21,19 +21,19 @@
                 </div>
                 <div class="field-wrapper">
                     <label for="location">Qual foi o lugar?</label>
-                    <input type="text" id="location" placeholder="Insira o local">
+                    {{lost_form.local}}
                 </div>
                 <div class="field-wrapper">
                     <label for="item">Digite o item perdido:</label>
-                    <input type="text" id="item" placeholder="O que você perdeu?">
+                    {{lost_form.item}}
                 </div>
                 <div class="field-wrapper">
                     <label for="itemDesc">Nos conte mais sobre esse item:</label>
-                    <textarea id="itemDesc" cols="30" rows="10" placeholder="Insira uma descrição sobre ele"></textarea>
+                    {{lost_form.description}}
                 </div>
                 <div class="field-wrapper">
                     <label for="contact">Por onde podemos contactar você?</label>
-                    <input type="text" id="contact" placeholder="Digite um contato">
+                    {{lost_form.contact}}
                 </div>
                 <button type="submit">ENVIAR</button>
             </form>
