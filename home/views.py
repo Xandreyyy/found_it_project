@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import requests
-from .templates.home.LostForm import LostForm
+from .templates.home.Form import Form
 from django.views.decorators.csrf import csrf_exempt
 
 def my_request():
@@ -17,16 +17,15 @@ def my_request():
 
 @csrf_exempt
 def home(request):
-    my_form = LostForm()
     if request.method == "POST":
-        my_form = LostForm(request.POST)
+        my_form = Form(request.POST, auto_id=False)
         
         if my_form.is_valid():
-            print(my_form.cleaned_data["local"])
+            print(my_form.cleaned_data["location"])
             print(my_form.cleaned_data["item"])
             print(my_form.cleaned_data["description"])
             print(my_form.cleaned_data["contact"])
 
-            return render(request, "home/index.html", {"lost_form": LostForm()})
+            return render(request, "home/index.html", {"lost_form": Form()})
             
     return render(request, "home/index.html", {"lost_form": my_form})
