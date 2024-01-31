@@ -5,18 +5,81 @@
 <div id="map"></div>
 
 <script>
-    let apiKey = "pk.9bac73b8821d501d511a29413e757052"
-    let map = L.map('map').setView([-30.088, -51.023], 13)
-    L.tileLayer(`https://{s}-tiles.locationiq.com/v3/streets/r/{z}/{x}/{y}.raster?key=${apiKey}`, {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://locationiq.com/attribution" title="Affordable, Scalable & Reliable location services">LocationIQ</a>'
-    }).addTo(map)
+    class Map{
+        constructor(){
+            this.key = "pk.9bac73b8821d501d511a29413e757052"
+            this.defaultCoordsValue = {lat: -30.088, lon: -51.023}
+            this.radius = 500
+            this.mapObject = null
+            this.mapCircle = null
+            this.showMap()
+            this.displayCircle()
+        }
 
-    let circle = L.circle([-30.09, -51.04],{
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 500
-    }).addTo(map)
+        showMap(){
+            let map = L.map('map').setView(this.defaultCoordsValue, 15)
 
+            L.tileLayer(`https://{s}-tiles.locationiq.com/v3/streets/r/{z}/{x}/{y}.raster?key=${this.apiKey}`, {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://locationiq.com/attribution" title="Affordable, Scalable & Reliable location services">LocationIQ</a>'
+            }).addTo(map)
+
+            this.mapObject = map
+        }
+
+        displayCircle(){
+            let circle = L.circle([-30.09, -51.04], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: this.radius,
+                bubblingMouseEvents: true
+            }).addTo(this.mapObject)
+
+            this.mapCircle = circle
+        }
+
+        get apiKey(){
+            return this.key
+        }
+
+        set lat(newLat){
+            this.lat = newLat
+        }
+
+        set lon(newLon){
+            this.lat = newLon
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", ()=> {
+        const options = {method: 'GET', headers: {accept: 'application/json'}}
+        // ??? como o mapa ta sendo renderizado no HTML???
+        let inputLocation = document.getElementById("location")
+        const locationMap = new Map()
+        
+        inputLocation.addEventListener("focusout", () =>{
+            // just a test:
+            locationMap.mapCircle.setRadius(locationMap.mapCircle.getRadius() + 20)
+            fetch(`https://us1.locationiq.com/v1/search?q=${inputLocation.value}&format=json&matchquality=0&key=${locationMap.apiKey}`, options)
+            .then(response => response.json())
+            .then(response => getCoords(response))
+            .catch(err => console.error(err))
+        })
+
+        function getCoords(response){
+            try{
+                const latitude = parseFloat(response[0].lat)
+                const longetude = parseFloat(response[0].lon)
+                changeViewMap(latitude, longetude)
+            }catch (error){
+                alert("Deu erro papai: " + error)
+            }
+        }
+
+        function changeViewMap(lat, lon){
+            locationMap.mapObject.panTo([lat, lon], 15)
+        }
+    })
+    
 </script>
