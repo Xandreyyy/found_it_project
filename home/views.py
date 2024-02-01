@@ -1,8 +1,10 @@
-from django.shortcuts import render
-import requests
-from .templates.home.Form import Form
-from .templates.home.Form import Form
 from django.views.decorators.csrf import csrf_exempt
+from .templates.home.Form import Form
+from django.shortcuts import render
+# from javascript import require
+import requests
+
+
 
 def my_request():
     url = "https://us1.locationiq.com/v1/search"

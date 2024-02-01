@@ -2,6 +2,10 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+<div>
+    <button class="area-opt" id="increase-zoom" type="button">+</button>
+    <button class="area-opt" id="decrease-zoom" type="button">-</button>
+</div>
 <div id="map"></div>
 
 <script>
@@ -33,7 +37,6 @@
                 fillColor: '#f03',
                 fillOpacity: 0.5,
                 radius: this.radius,
-                bubblingMouseEvents: true
             }).addTo(this.mapObject)
 
             this.mapCircle = circle
@@ -55,30 +58,42 @@
     document.addEventListener("DOMContentLoaded", ()=> {
         const options = {method: 'GET', headers: {accept: 'application/json'}}
         // ??? como o mapa ta sendo renderizado no HTML???
-        let inputLocation = document.getElementById("location")
+        const inputLocation = document.getElementById("location")
+        const btn_increaseZoom = document.getElementById("increase-zoom")
+        const btn_decreaseZoom = document.getElementById("decrease-zoom")
+        const coords = {lat: 0.0, lon: 0.0}
         const locationMap = new Map()
         
         inputLocation.addEventListener("focusout", () =>{
-            // just a test:
-            locationMap.mapCircle.setRadius(locationMap.mapCircle.getRadius() + 20)
+
             fetch(`https://us1.locationiq.com/v1/search?q=${inputLocation.value}&format=json&matchquality=0&key=${locationMap.apiKey}`, options)
             .then(response => response.json())
-            .then(response => getCoords(response))
+            .then(response => getCoords(response, coords))
+            .then(response => changeMapView(coords))
             .catch(err => console.error(err))
         })
 
-        function getCoords(response){
+        btn_increaseZoom.addEventListener("click", () => {
+            locationMap.mapCircle.setRadius(locationMap.mapCircle.getRadius() + 20)
+        })
+
+        btn_decreaseZoom.addEventListener("click", () => {
+            locationMap.mapCircle.setRadius(locationMap.mapCircle.getRadius() - 20)
+        })
+
+        function getCoords(response, coords){
             try{
                 const latitude = parseFloat(response[0].lat)
                 const longetude = parseFloat(response[0].lon)
-                changeViewMap(latitude, longetude)
+                coords.lat = latitude
+                coords.lon = longetude
             }catch (error){
                 alert("Deu erro papai: " + error)
             }
         }
 
-        function changeViewMap(lat, lon){
-            locationMap.mapObject.panTo([lat, lon], 15)
+        function changeMapView(coords){
+            locationMap.mapObject.panTo(coords, 15)
         }
     })
     
