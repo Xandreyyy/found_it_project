@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import requests
 from .templates.home.Form import Form
+from .templates.home.Form import Form
 from django.views.decorators.csrf import csrf_exempt
 
 def my_request():
@@ -26,6 +27,7 @@ def home(request):
             print(my_form.cleaned_data["description"])
             print(my_form.cleaned_data["contact"])
 
+            return render(request, "home/index.html", {"lost_form": Form()})
             return render(request, "home/index.html", {"lost_form": Form()})
             
     return render(request, "home/index.html", {"lost_form": my_form})
