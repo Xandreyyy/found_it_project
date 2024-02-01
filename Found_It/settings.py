@@ -76,6 +76,10 @@ WSGI_APPLICATION = 'Found_It.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# usando MySQL, criar uma database;
+# no dict abaixo, substituir com as seguintes infos: ENGINE, NAME, USER, PASSWORD, HOST, PORT (devem coincidir com as infos do MySQL)
+# https://docs.djangoproject.com/en/5.0/topics/db/
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
