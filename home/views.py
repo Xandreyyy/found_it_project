@@ -1,10 +1,7 @@
 from django.views.decorators.csrf import csrf_exempt
 from .templates.home.Form import Form
 from django.shortcuts import render
-# from javascript import require
 import requests
-
-
 
 def my_request():
     url = "https://us1.locationiq.com/v1/search"
@@ -21,15 +18,14 @@ def my_request():
 @csrf_exempt
 def home(request):
     my_form = Form(request.POST, auto_id=False)
+
     if request.method == "POST":
         
         if my_form.is_valid():
-            print(my_form.cleaned_data["location"])
-            print(my_form.cleaned_data["item"])
-            print(my_form.cleaned_data["description"])
-            print(my_form.cleaned_data["contact"])
+            user_loc = my_form.cleaned_data["location"]
+            user_item = my_form.cleaned_data["item"]
+            user_item_desc = my_form.cleaned_data["description"]
+            print(user_loc, user_item, user_item_desc)
 
             return render(request, "home/index.html", {"lost_form": Form()})
-            return render(request, "home/index.html", {"lost_form": Form()})
-            
     return render(request, "home/index.html", {"lost_form": my_form})
