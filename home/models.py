@@ -2,11 +2,13 @@ from django.db import models
 
 # https://docs.djangoproject.com/en/5.0/topics/db/models/
 
-# class <NomeClasse>(model.Model):
-#     coluna1 = models.CharField(max_length = 10)
-#     coluna2 = models.DateTimeField(auto_now = True)
-
-
+class LostUser(models.Model): #coords, item, desc, contact
+    coords = models.CharField(max_length = 11)
+    item = models.CharField(max_length = 1)
+    description = models.CharField(max_length = 1)
+    contact = models.CharField(max_length = 11)
+    circle_radio = models.CharField(max_length = 11)
+    lost_date = models.DateTimeField(auto_now = True)
 
 # https://docs.djangoproject.com/en/5.0/topics/migrations/ (django-admin = python manage.py, app_label o app que o models faz parte)
 
