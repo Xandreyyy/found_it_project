@@ -1,0 +1,46 @@
+{% extends "header.html" %}
+{% block content %}
+    <div>
+        <aside>
+            <img src="../static/profile_picture_test.png" alt="Profile picture" style="border-radius: 50%; width: 6rem;">
+            <h2>{{request.user.username}}</h2>
+            <a href={% url "account:logout" %}><button type="button">SAIR</button></a>
+        </aside>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <td>ITEM</td>
+                        <td>LOCAL</td>
+                        <td>DATA</td>
+                        <td>STATUS</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CELULAR</td>
+                        <td>CENTRO DE VIAMÃO, RS, BRASIL</td>
+                        <td>5/09/2024 - 16:44</td>
+                        <td style="color: red; font-weight: bold;">PERDIDO</td>
+                    </tr>
+                    {% if user_items %}
+                        {% for item in user_items %}
+                        <tr>
+                            <td>{{ item.item }}</td>
+                            <td>{{ item.latitude }}</td>
+                            <td>{{ item.lost_date }}</td>
+                            <td>{{ item.was_found() }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                    
+                    <p>Você ainda não perdeu nenhum item!</p>
+
+                    {% endif %}
+                    
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+{% endblock content %}

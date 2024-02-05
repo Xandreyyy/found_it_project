@@ -1,0 +1,22 @@
+{% extends "header.html" %}
+
+{% block content %}
+    <form action="." method="POST">
+        {% csrf_token %}
+        {{ create_acc_form.username.label }}
+        {{ create_acc_form.username }}
+
+        {{ create_acc_form.last_name.label }}
+        {{ create_acc_form.last_name }}
+
+        {{ create_acc_form.email.label }}
+        {{ create_acc_form.email }}
+
+        {{ create_acc_form.password1.label }}
+        {{ create_acc_form.password1 }}
+
+        {{ create_acc_form.password2.label }}
+        {{ create_acc_form.password2 }}
+        <button type="submit">CRIAR</button>
+    </form>
+{% endblock content %}
