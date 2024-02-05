@@ -36,6 +36,14 @@ class Map{
         return this.key
     }
 
+    get getRadius(){
+        return this.radius
+    }
+
+    set setRadius(newRadius){
+        this.radius = newRadius
+    }
+
     set lat(newLat){
         this.lat = newLat
     }
@@ -49,12 +57,12 @@ document.addEventListener("DOMContentLoaded", ()=> {
     const options = {method: 'GET', headers: {accept: 'application/json'}}
     const btn_increaseZoom = document.getElementById("increase-zoom")
     const btn_decreaseZoom = document.getElementById("decrease-zoom")
+    const btn_send = document.getElementById("send")
     const inputLocation = document.getElementById("location")
     const coords = {lat: 0.0, lon: 0.0}
     const locationMap = new Map()
-    
     inputLocation.addEventListener("focusout", () =>{
-
+       
         if(inputLocation.value != ''){
             fetch(`https://us1.locationiq.com/v1/search?q=${inputLocation.value}&format=json&matchquality=0&key=${locationMap.apiKey}`, options)
             .then(response => response.json())
@@ -62,6 +70,14 @@ document.addEventListener("DOMContentLoaded", ()=> {
             .then(response => changeMapView(coords))
             .catch(err => console.error(err))
         }
+        $.ajax({
+            url: location.protocol + "//" + window.location.hostname + ":" + location.port,
+            type: "POST",
+            data: `${locationMap.getRadius}`.serialize(),
+            success: function (data) {
+                console.log(data);
+            }
+        }); // end ajax
     })
 
     btn_increaseZoom.addEventListener("click", () => {
@@ -70,6 +86,10 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
     btn_decreaseZoom.addEventListener("click", () => {
         locationMap.mapCircle.setRadius(locationMap.mapCircle.getRadius() - 20)
+    })
+
+    btn_send.addEventListener("submit", ()=>{
+        
     })
 
     function getCoords(response, coords){
