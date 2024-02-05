@@ -8,11 +8,13 @@
         <title>Found It - {% block title %}HOME{% endblock title %}</title>
         <link rel="stylesheet" href={% static "index.css" %}>
         <script src={% static "header/header.js" %} defer></script>
+        <link rel="stylesheet" href={% static "home/css/style.css" %}>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
         <header>
             <div class="container">
-                <img src={% static "lib/gray_logo.svg" %} alt="Found It icon">
+                <a href={% url "home" %}><img src={% static "lib/gray_logo.svg" %} alt="Found It icon"></a>
                 <button id="hamburger">
                     <span class="span1"></span>
                     <span class="span2"></span>
@@ -20,10 +22,18 @@
                 </button>
                 <nav class="aj-center">
                     <ul class="relative">
-                        <li><a href="#" class="black-btn">CRIAR</a></li>
+                        {% if not request.user.is_authenticated %}
+                            <li><a href={% url "account:signup" %} class="black-btn">CRIAR</a></li>
+                        {% else %}
+                            {% comment %} NOTHING {% endcomment %}
+                        {% endif %}
                         <li><a href="#" class="black-btn">SUPORTE</a></li>
                         <li><a href="#" class="black-btn">SOBRE</a></li>
-                        <li><a href="#" class="white-btn">ENTRAR</a></li>
+                        {% if not request.user.is_authenticated %}
+                            <li><a href={% url "account:signin" %} class="white-btn">ENTRAR</a></li>
+                        {% else %}
+                            <li><a href={% url "account:account" %} class="white-btn">CONTA</a></li>
+                        {% endif %}
                     </ul>
                 </nav>
             </div>
