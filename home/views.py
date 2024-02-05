@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect
 import requests
 from .models import LostItem
 from django.utils import timezone as tz
-from django.http import JsonResponse
 
 def forward_geocoding(query):
     url = "https://us1.locationiq.com/v1/search"
@@ -38,7 +37,8 @@ def home(request):
             coords = get_coords(user_loc)
             # print(f"Radio: {circle_radius}")
             print(coords)
-            lost_item = LostItem(lost_latitude = coords["lat"], lost_longetude = coords["lon"], item = user_item, description = user_item_desc, circle_radio = None, lost_date = tz.now(), lost_fk = request.user)
+            #id_item, lost_loc, lost_latitude, lost_longetude, lost_item, item_desc, circle_radio, lost_date, lost_fk, item_status
+            lost_item = LostItem(lost_loc = user_loc, lost_latitude = coords["lat"], lost_longetude = coords["lon"], lost_item = user_item, item_desc = user_item_desc, circle_radio = None, lost_date = tz.now(), lost_fk = request.user)
             lost_item.save()
 
             return render(request, "home/index.html", {"lost_form": Form()})

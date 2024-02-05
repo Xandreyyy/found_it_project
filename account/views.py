@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from .forms import CreateAccount
 from home.models import LostItem
 from django.contrib.auth import authenticate, login, logout
@@ -31,8 +31,8 @@ def login_account(request):
 
 @login_required(login_url="account:signin")
 def user_account(request):
-    user = request.user.pk
-    user_items = get_object_or_404(LostItem, user)
+    user = request.user.id
+    user_items = LostItem.objects.filter(lost_fk_id=user)
     context = {"user_items": user_items}
 
     return render(request = request, template_name = "account/account.html", context = context)

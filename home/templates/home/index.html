@@ -8,7 +8,6 @@
                 <button id="found_item" class="main-btn"><img src={% static "home/icon_buttons/found_btn_icon.svg" %} alt="Found item icon" class="btn-icon"></button>
             </div>
         </section>
-        {% if request.user.is_authenticated %}{{request.user.email}}{% else %}não está logado{% endif %}
         <main class="container">
             <h1>ONDE VOCÊ PERDEU?</h1>
             {% csrf_token %}

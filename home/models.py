@@ -4,10 +4,11 @@ from django.contrib.auth.models import User
 # https://docs.djangoproject.com/en/5.0/topics/db/models/
 
 class LostItem(models.Model):
+    lost_loc = models.CharField(max_length = 25)
     lost_latitude = models.IntegerField() # max -> 11
     lost_longetude = models.IntegerField() # max -> 11
-    item = models.CharField(max_length = 30)
-    description = models.CharField(max_length = 255)
+    lost_item = models.CharField(max_length = 30)
+    item_desc = models.CharField(max_length = 255)
     circle_radio = models.IntegerField(null = True) # max -> 4
     lost_date = models.DateTimeField(auto_now = True)
     lost_fk = models.ForeignKey(User, on_delete = models.CASCADE)
