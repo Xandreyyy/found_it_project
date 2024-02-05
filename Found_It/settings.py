@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home'
+    'home.apps.HomeConfig',
+    'account.apps.AccountConfig'
 ]
 
 MIDDLEWARE = [
@@ -81,9 +82,13 @@ WSGI_APPLICATION = 'Found_It.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/topics/db/
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "foundit_db",
+        "USER": "root",
+        "PASSWORD": "root99",
+        "HOST": "localhost",
+        "PORT": "3306"
     }
 }
 
@@ -112,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
