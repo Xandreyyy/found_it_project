@@ -1,31 +1,49 @@
 from django.views.decorators.csrf import csrf_exempt
 from .templates.home.Form import Form
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests
+from .models import LostItem
+from django.utils import timezone as tz
+from django.http import JsonResponse
 
-def my_request():
+def forward_geocoding(query):
     url = "https://us1.locationiq.com/v1/search"
 
     data = {
         'key': 'pk.9bac73b8821d501d511a29413e757052',
-        'q': 'Viamão, RS, Brazil',
+        'q': query,
         'format': 'json'
     }
 
     response = requests.get(url, params = data)
-    print(response.json())
+    return response.json()
+
+def get_coords(location):
+    data = forward_geocoding(location)[0]
+    lat = float(data["lat"])
+    lon = float(data["lon"])
+    return {"lat": lat, "lon": lon}
 
 @csrf_exempt
 def home(request):
     my_form = Form(request.POST, auto_id=False)
 
     if request.method == "POST":
-        
-        if my_form.is_valid():
+            
+        if my_form.is_valid() and request.user.is_authenticated:
             user_loc = my_form.cleaned_data["location"]
             user_item = my_form.cleaned_data["item"]
             user_item_desc = my_form.cleaned_data["description"]
-            print(user_loc, user_item, user_item_desc)
+            circle_radius = request.POST.get("lost_mapRadius")
+            coords = get_coords(user_loc)
+            # print(f"Radio: {circle_radius}")
+            print(coords)
+            lost_item = LostItem(lost_latitude = coords["lat"], lost_longetude = coords["lon"], item = user_item, description = user_item_desc, circle_radio = None, lost_date = tz.now(), lost_fk = request.user)
+            lost_item.save()
 
             return render(request, "home/index.html", {"lost_form": Form()})
+        
+        elif not request.user.is_authenticated:
+            return redirect("account:signin")
+
     return render(request, "home/index.html", {"lost_form": my_form})

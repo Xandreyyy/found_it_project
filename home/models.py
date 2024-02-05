@@ -1,14 +1,32 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # https://docs.djangoproject.com/en/5.0/topics/db/models/
 
-class LostUser(models.Model): #coords, item, desc, contact
-    coords = models.CharField(max_length = 11)
-    item = models.CharField(max_length = 1)
-    description = models.CharField(max_length = 1)
-    contact = models.CharField(max_length = 11)
-    circle_radio = models.CharField(max_length = 11)
+class LostItem(models.Model):
+    lost_latitude = models.IntegerField() # max -> 11
+    lost_longetude = models.IntegerField() # max -> 11
+    item = models.CharField(max_length = 30)
+    description = models.CharField(max_length = 255)
+    circle_radio = models.IntegerField(null = True) # max -> 4
     lost_date = models.DateTimeField(auto_now = True)
+    lost_fk = models.ForeignKey(User, on_delete = models.CASCADE)
+    item_status = models.BooleanField(default = False)
+
+    def __str__(self):
+        return f"{self.lost_fk} -> {self.item}"
+
+    def was_found(self):
+        return self.item_status
+
+# class FoundItem(models.Model):
+#     não deve ter FK da LostItem porque não faz sentido
+#     found_latitude = models.IntegerField(max_length = 11)
+#     found_longetude = models.IntegerField(max_length = 11)
+#     item = models.CharField(max_length = 30)
+#     description = models.CharField(max_length = 255)
+#     found_date = models.DateTimeField(auto_now = True)
+#     found_fk = models.ForeignKey(User, on_delete = models.SET_NULL)
 
 # https://docs.djangoproject.com/en/5.0/topics/migrations/ (django-admin = python manage.py, app_label o app que o models faz parte)
 
