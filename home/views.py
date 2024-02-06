@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect
 import requests
 from .models import LostItem
 from django.utils import timezone as tz
-from django.http import JsonResponse
 
 def forward_geocoding(query):
     url = "https://us1.locationiq.com/v1/search"

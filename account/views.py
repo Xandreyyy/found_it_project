@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from .forms import CreateAccount
 from home.models import LostItem
 from django.contrib.auth import authenticate, login, logout
