@@ -86,7 +86,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "foundit_db",
         "USER": "root",
-        "PASSWORD": "root",
+        "PASSWORD": "root99",
         "HOST": "localhost",
         "PORT": "3306"
     }
