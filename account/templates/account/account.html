@@ -7,39 +7,34 @@
             <a href={% url "account:logout" %}><button type="button">SAIR</button></a>
         </aside>
         <main>
-            <table>
-                <thead>
-                    <tr>
-                        <td>ITEM</td>
-                        <td>LOCAL</td>
-                        <td>DATA</td>
-                        <td>STATUS</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>CELULAR</td>
-                        <td>CENTRO DE VIAMÃO, RS, BRASIL</td>
-                        <td>5/09/2024 - 16:44</td>
-                        <td style="color: red; font-weight: bold;">PERDIDO</td>
-                    </tr>
-                    {% if user_items %}
+            {% if user_items %}
+                <table>
+                    <thead>
+                        <tr>
+                            <td>ITEM</td>
+                            <td>LOCAL</td>
+                            <td>DATA</td>
+                            <td>STATUS</td>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {% for item in user_items %}
                         <tr>
                             <td>{{ item.item }}</td>
-                            <td>{{ item.latitude }}</td>
-                            <td>{{ item.lost_date }}</td>
-                            <td>{{ item.was_found() }}</td>
+                            <td>{{ item.loc }}</td>
+                            <td>{{ item.date }}</td>
+                            {% if not item.was_found %}
+                            <td style="color: red; font-weight: bold;">PERDIDO</td>
+                            {% else %}
+                            <td style="color: lightgreen; font-weight: bold;">ENCONTRADO</td>
+                            {% endif %}
                         </tr>
                         {% endfor %}
-                    {% else %}
-                    
-                    <p>Você ainda não perdeu nenhum item!</p>
-
-                    {% endif %}
-                    
                 </tbody>
-            </table>
+                </table>
+            {% else %}
+                <p>Você ainda não perdeu nenhum item!</p>
+            {% endif %}
         </main>
     </div>
 

@@ -32,7 +32,7 @@ def login_account(request):
 @login_required(login_url="account:signin")
 def user_account(request):
     user = request.user.pk
-    user_items = get_object_or_404(LostItem, user)
+    user_items = LostItem.objects.filter(user_lost = user)
     context = {"user_items": user_items}
 
     return render(request = request, template_name = "account/account.html", context = context)

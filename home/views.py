@@ -34,11 +34,18 @@ def home(request):
             user_loc = my_form.cleaned_data["location"]
             user_item = my_form.cleaned_data["item"]
             user_item_desc = my_form.cleaned_data["description"]
-            circle_radius = request.POST.get("lost_mapRadius")
+            # circle_radius = request.POST.get("lost_mapRadius")
             coords = get_coords(user_loc)
-            # print(f"Radio: {circle_radius}")
-            print(coords)
-            lost_item = LostItem(lost_latitude = coords["lat"], lost_longetude = coords["lon"], item = user_item, description = user_item_desc, circle_radio = None, lost_date = tz.now(), lost_fk = request.user)
+
+            lost_item = LostItem(loc = user_loc,
+                                 latitude = coords["lat"],
+                                 longetude = coords["lon"],
+                                 item = user_item,
+                                 description = user_item_desc,
+                                 circle_radio = None,
+                                 user_lost = request.user,
+                                 date = tz.now()
+                                ) 
             lost_item.save()
 
             return render(request, "home/index.html", {"lost_form": Form()})
