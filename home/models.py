@@ -15,7 +15,7 @@ class LostItem(models.Model):
     item_status = models.BooleanField(default = False)
 
     def __str__(self):
-        return f"{self.lost_fk} -> {self.item}"
+        return f"{self.user_lost}: {self.item}"
 
     def was_found(self):
         return self.item_status
