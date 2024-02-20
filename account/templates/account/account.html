@@ -1,4 +1,13 @@
 {% extends "header.html" %}
+
+{% load static %}
+
+{% block title %}CONTA{% endblock title %}
+
+{% block head_tags %}
+<link rel="stylesheet" href={% static "account/css/index.css" %}>
+{% endblock head_tags %}
+
 {% block content %}
     <div>
         <aside>
@@ -33,7 +42,7 @@
                 </tbody>
                 </table>
             {% else %}
-                <p>Você ainda não perdeu nenhum item!</p>
+                <p>Ufa! Você não perdeu nenhum item!</p>
             {% endif %}
         </main>
     </div>
