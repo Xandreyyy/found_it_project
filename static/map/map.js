@@ -30,6 +30,8 @@ class Map{
         }).addTo(this.mapObject)
 
         this.mapCircle = circle
+        let my_cricle = new L.Draggable(this.mapCircle)
+        my_cricle.enable()
     }
 
     get apiKey(){
@@ -47,7 +49,7 @@ class Map{
     set lat(newLat){
         this.lat = newLat
     }
-
+    
     set lon(newLon){
         this.lat = newLon
     }
@@ -57,12 +59,12 @@ document.addEventListener("DOMContentLoaded", ()=> {
     const options = {method: 'GET', headers: {accept: 'application/json'}}
     const btn_increaseZoom = document.getElementById("increase-zoom")
     const btn_decreaseZoom = document.getElementById("decrease-zoom")
-    const btn_send = document.getElementById("send")
     const inputLocation = document.getElementById("location")
     const coords = {lat: 0.0, lon: 0.0}
+
     const locationMap = new Map()
+
     inputLocation.addEventListener("focusout", () =>{
-       
         if(inputLocation.value != ''){
             fetch(`https://us1.locationiq.com/v1/search?q=${inputLocation.value}&format=json&matchquality=0&key=${locationMap.apiKey}`, options)
             .then(response => response.json())
@@ -70,26 +72,27 @@ document.addEventListener("DOMContentLoaded", ()=> {
             .then(response => changeMapView(coords))
             .catch(err => console.error(err))
         }
-        $.ajax({
-            url: location.protocol + "//" + window.location.hostname + ":" + location.port,
-            type: "POST",
-            data: `${locationMap.getRadius}`.serialize(),
-            success: function (data) {
-                console.log(data);
-            }
-        }); // end ajax
+        // CREATE AJAX TO SEND DATA WITH POST METHOD
     })
 
     btn_increaseZoom.addEventListener("click", () => {
-        locationMap.mapCircle.setRadius(locationMap.mapCircle.getRadius() + 20)
+        if (locationMap.mapCircle.getRadius() <= 1020){
+
+            cursorEnable(btn_increaseZoom)
+            locationMap.mapCircle.setRadius(locationMap.mapCircle.getRadius() + 20)
+        }else{
+            cursorDisable(btn_increaseZoom)
+        }
     })
 
     btn_decreaseZoom.addEventListener("click", () => {
-        locationMap.mapCircle.setRadius(locationMap.mapCircle.getRadius() - 20)
-    })
+        if (locationMap.mapCircle.getRadius() >= 360){
 
-    btn_send.addEventListener("submit", ()=>{
-        
+            cursorEnable(btn_decreaseZoom)
+            locationMap.mapCircle.setRadius(locationMap.mapCircle.getRadius() - 20)
+        }else{
+            cursorDisable(btn_decreaseZoom)
+        }
     })
 
     function getCoords(response, coords){
@@ -105,5 +108,27 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
     function changeMapView(coords){
         locationMap.mapObject.panTo(coords, 15)
+        changeMapCircle(coords)
+    }
+
+    function changeMapCircle(coords){
+        locationMap.mapCircle.setLatLng(coords)
+        
+    }
+
+    function cursorEnable(btnElement){
+        if(btnElement.previousElementSibling != null && btnElement.previousElementSibling.hasAttribute("attribute", "disabled")){
+            btnElement.previousElementSibling.removeAttribute("attribute", "disabled")
+            btnElement.previousElementSibling.style.cursor = "pointer"
+
+        }else if(btnElement.previousElementSibling === null && btnElement.nextElementSibling.hasAttribute("attribute", "disabled")){
+            btnElement.nextElementSibling.removeAttribute("attribute", "disabled")
+            btnElement.nextElementSibling.style.cursor = "pointer"
+        }
+    }
+
+    function cursorDisable(btnElement){
+        btnElement.setAttribute("attribute", "disabled")
+        btnElement.style.cursor = "not-allowed"
     }
 })
