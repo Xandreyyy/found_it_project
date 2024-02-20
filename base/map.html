@@ -1,10 +1,46 @@
 {% load static %}
 <link rel="stylesheet" href={% static "leaflet/leaflet.css" %}>
-<script src={% static "leaflet/leaflet.js" %}></script>
-<script src={% static "map/map.js" %}></script>
+<script src={% static "leaflet/leaflet.js" %} defer></script>
+<script src={% static "map/map.js" %} defer></script>
+<style>
+    .area-opt{
+        height: 25px;
+        margin-bottom: 5px;
+        padding: 10px;
+        position: relative;
+        width: 60px;
+    }
 
+    .area-opt:active{
+        background-color: white;
+        color: black;
+    }
+
+    #increase-zoom, #decrease-zoom{
+        background-repeat: no-repeat;
+        background-size: 38% 90%;
+        background-position: center;
+        transition: 0.1s;
+    }
+
+    #increase-zoom{
+        background-image: url("../static/map/white-zoom-increase.png");
+    }
+
+    #increase-zoom:active{
+        background-image: url("../static/map/black-zoom-increase.png");
+    }
+
+    #decrease-zoom{
+        background-image: url("../static/map/white-zoom-decrease.png");
+    }
+
+    #decrease-zoom:active{
+        background-image: url("../static/map/black-zoom-decrease.png");
+    }
+</style>
 <div>
-    <button class="area-opt" id="increase-zoom" type="button">+</button>
-    <button class="area-opt" id="decrease-zoom" type="button">-</button>
+    <button class="area-opt black-btn" id="increase-zoom" type="button"></button>
+    <button class="area-opt black-btn" id="decrease-zoom" type="button"></button>
 </div>
 <div id="map"></div>

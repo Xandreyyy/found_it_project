@@ -1,41 +1,32 @@
+{% extends "head.html" %}
 {% load static %}
-    <!DOCTYPE html>
-    <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Found It - {% block title %}HOME{% endblock title %}</title>
-        <link rel="stylesheet" href={% static "index.css" %}>
-        <script src={% static "header/header.js" %} defer></script>
-        <link rel="stylesheet" href={% static "home/css/style.css" %}>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    </head>
-    <body>
-        <header>
-            <div class="container">
-                <a href={% url "home" %}><img src={% static "lib/gray_logo.svg" %} alt="Found It icon"></a>
-                <button id="hamburger">
-                    <span class="span1"></span>
-                    <span class="span2"></span>
-                    <span class="span3"></span>
-                </button>
-                <nav class="aj-center">
-                    <ul class="relative">
-                        {% if not request.user.is_authenticated %}
-                            <li><a href={% url "account:signup" %} class="black-btn">CRIAR</a></li>
-                        {% else %}
-                            {% comment %} NOTHING {% endcomment %}
-                        {% endif %}
-                        <li><a href="#" class="black-btn">SUPORTE</a></li>
-                        <li><a href="#" class="black-btn">SOBRE</a></li>
-                        {% if not request.user.is_authenticated %}
-                            <li><a href={% url "account:signin" %} class="white-btn">ENTRAR</a></li>
-                        {% else %}
-                            <li><a href={% url "account:account" %} class="white-btn">CONTA</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
-        </header>
-    {% block content %}{% endblock content %}
+
+<body>
+    {% block header_content %}
+    <header>
+        <div class="container">
+            <a href={% url "home" %}><img src={% static "lib/gray_logo.svg" %} alt="Found It icon"></a>
+            <button id="hamburger">
+                <span class="span1"></span>
+                <span class="span2"></span>
+                <span class="span3"></span>
+            </button>
+            <nav class="aj-center">
+                <ul class="relative">
+                    {% if not request.user.is_authenticated %}
+                        <li><a href={% url "account:signup" %} class="black-btn">CRIAR</a></li>
+                    {% else %}
+                        {% comment %} NOTHING {% endcomment %}
+                    {% endif %}
+                    <li><a href="home" class="black-btn">SUPORTE</a></li>
+                    <li><a href="home" class="black-btn">SOBRE</a></li>
+                    {% if not request.user.is_authenticated %}
+                        <li><a href={% url "account:signin" %} class="white-btn"><span>ENTRAR</span></a></li>
+                    {% else %}
+                        <li><a href={% url "account:account" %} class="white-btn">CONTA</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+    {% endblock header_content %}
