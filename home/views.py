@@ -43,8 +43,7 @@ def home(request):
                                  description = user_item_desc,
                                  circle_radio = None,
                                  user_lost = request.user,
-                                 date = tz.now()
-                                ) 
+                                 date = tz.now()) 
             lost_item.save()
 
             return render(request, "home/index.html", {"lost_form": Form()})

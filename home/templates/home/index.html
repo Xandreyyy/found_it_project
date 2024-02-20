@@ -1,11 +1,17 @@
 {% extends "header.html" %}
 {% load static %}
+
+{% block head_tags %}
+<link href={% static 'home/css/index.css' %} rel="stylesheet" type="text/css"/>
+<script src="../../static/home/js/submit-btn.js" defer></script>
+{% endblock head_tags %}
+
 {% block content %}
         <section id="main-menu" class="container a-center">
             <div class="j-center col-gap1 relative">
                 <span id="main-menu-line"></span>
-                <button id="lost_item" class="main-btn"><img src={% static "home/icon_buttons/lost_btn_icon.svg" %} alt="Lost item icon" class="btn-icon"></button>
-                <button id="found_item" class="main-btn"><img src={% static "home/icon_buttons/found_btn_icon.svg" %} alt="Found item icon" class="btn-icon"></button>
+                <button id="lost_item" class="main-btn"><img src={% static "home/lib/icon_buttons/lost_btn_icon.svg" %} alt="Lost item icon" class="btn-icon"></button>
+                <button id="found_item" class="main-btn"><img src={% static "home/lib/icon_buttons/found_btn_icon.svg" %} alt="Found item icon" class="btn-icon"></button>
             </div>
         </section>
         <main class="container">
@@ -27,15 +33,11 @@
                     <label for="itemDesc">Nos conte mais sobre esse item:</label>
                     {{lost_form.description}}
                 </div>
-                <div class="field-wrapper">
-                    <label for="contact">Por onde podemos contactar você?</label>
-                    {{lost_form.contact}}
-                </div>
-                <button type="submit" id="send">ENVIAR</button>
+                <button type="submit" id="send" class="black-btn">ENVIAR</button>
             </form>
         </main>
         <footer>
         </footer>
     </body>
-    </html>
+</html>
 {% endblock content %}
