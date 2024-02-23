@@ -1,5 +1,12 @@
 {% extends "header.html" %}
 
+{% load static %}
+{% load compress %}
+
+{% block head_tags %}
+    <link rel="stylesheet" type="text/x-scss" href={% static "account/sass/login.scss" %}>
+{% endblock %}
+
 {% block content %}
     <form action="." method="POST">
         {% csrf_token %}

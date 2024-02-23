@@ -1,11 +1,14 @@
 {% extends "header.html" %}
 
 {% load static %}
+{% load compress %}
 
 {% block title %}CONTA{% endblock title %}
 
 {% block head_tags %}
-<link rel="stylesheet" href={% static "account/css/index.css" %}>
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href={% static "account/sass/index.scss" %}>
+    {% endcompress %}
 {% endblock head_tags %}
 
 {% block content %}

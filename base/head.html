@@ -1,4 +1,5 @@
 {% load static %}
+{% load compress %}
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -7,9 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOUND IT - {% block title %}HOME{% endblock title %}</title>
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href={% static 'header/header.css' %}>
+    {% endcompress %}
 
-    <script src={% static "header/header.js" %} defer></script>
-    <link rel="stylesheet" type="text/css" href={% static 'header/header.css' %}>
+    {% compress js %}
+        <script src={% static "header/header.js" %} defer></script>
+    {% endcompress %}
     {% block head_tags %}{% endblock head_tags %}
 </head>
 

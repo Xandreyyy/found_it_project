@@ -18,8 +18,8 @@
                     {% else %}
                         {% comment %} NOTHING {% endcomment %}
                     {% endif %}
-                    <li><a href="home" class="black-btn">SUPORTE</a></li>
-                    <li><a href="home" class="black-btn">SOBRE</a></li>
+                    <li><a href={% url "home" %} class="black-btn">SUPORTE</a></li>
+                    <li><a href={% url "home" %} class="black-btn">SOBRE</a></li>
                     {% if not request.user.is_authenticated %}
                         <li><a href={% url "account:signin" %} class="white-btn"><span>ENTRAR</span></a></li>
                     {% else %}

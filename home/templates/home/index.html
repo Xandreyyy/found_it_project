@@ -1,9 +1,15 @@
 {% extends "header.html" %}
 {% load static %}
+{% load compress %}
 
 {% block head_tags %}
-<link href={% static 'home/css/index.css' %} rel="stylesheet" type="text/css"/>
-<script src="../../static/home/js/submit-btn.js" defer></script>
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href={% static 'home/sass/index.scss' %}/>
+    {% endcompress %}
+    
+    {% compress js %}
+        <script src={% static 'home/js/submit-btn.js' %} defer></script>
+    {% endcompress %}
 {% endblock head_tags %}
 
 {% block content %}

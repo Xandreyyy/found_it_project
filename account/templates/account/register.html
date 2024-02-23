@@ -1,8 +1,12 @@
 {% extends "header.html" %}
+
 {% load static %}
+{% load compress %}
 
 {% block head_tags %}
-<link rel="stylesheet" href={% static "account/css/register.css" %}>
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href={% static "account/sass/register.scss" %}>
+    {% endcompress %}
 {% endblock head_tags %}
 
 {% block content %}
