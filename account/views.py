@@ -3,7 +3,6 @@ from .forms import CreateAccount
 from home.models import LostItem
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 
 def create_account(request):
     form = CreateAccount(request.POST)

@@ -6,6 +6,24 @@
     margin-inline: auto;
 }
 
+.field-wrapper{
+    display: flex;
+    flex-direction: column;
+    label{
+        width: max-content;
+    }
+}
+
+.field{
+    border: 1px solid #868686;
+    border-radius: 4px;
+    font-size: 1.02rem;
+    padding: 0.2em;
+    font-family: Roboto;
+    max-width: 90%;
+    width: 100%;
+}
+
 .black-btn{
     background-color: black;
     border: none;
@@ -60,4 +78,11 @@
 
 .col-gap2{
     column-gap: 8rem;
+}
+
+@media screen and (min-width: 991px){
+    .field{
+        font-size: 1.1rem;
+        width: 25%;
+    }
 }
