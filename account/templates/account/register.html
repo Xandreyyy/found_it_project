@@ -10,46 +10,23 @@
 {% endblock head_tags %}
 
 {% block content %}
-    {% block register_form %}
+    <main class="j-center">
         {% comment %}https://docs.djangoproject.com/en/5.0/topics/forms/modelforms/#overriding-the-default-fields{% endcomment %}
-        {% csrf_token %}
-        <form action="." method="POST">
-            {% block username %}
-            <div class="field-wrapper">
-                <label for="username">{{ create_acc_form.username.label }}</label>
-                {{ create_acc_form.username }}
+        <form action="." method="POST" autocomplete="off">
+            {% csrf_token %}
+            <div class="col-center">
+                {% for field in create_acc_form %}
+                    <div class="field-wrapper relative">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        <p class="absolute" style="color: white; bottom: -19px;">{{ field.errors.as_text }}</p>
+                    </div>
+                {% endfor %}
+                <div class="field-wrapper">
+                    <button type="submit" class="white-btn">CRIAR</button>
+                </div>
             </div>
-            {% endblock username %}
-
-            {% block last_name %}
-            <div class="field-wrapper">
-                <label for="last_name">{{ create_acc_form.last_name.label }}</label>
-                {{ create_acc_form.last_name }}
-            </div>
-            {% endblock last_name %}
-
-            {% block email %}
-            <div class="field-wrapper">
-                <label for="email">{{ create_acc_form.email.label }}</label>
-                {{ create_acc_form.email }}
-            </div>
-            {% endblock email %}
-
-            {% block password1 %}
-            <div class="field-wrapper">
-                <label for="pssw1">{{ create_acc_form.password1.label }}</label>
-                {{ create_acc_form.password1 }}
-            </div>
-            {% endblock password1 %}
-
-            {% block password2 %}
-            <div class="field-wrapper">
-                <label for="pssw2">{{ create_acc_form.password2.label }}</label>
-                {{ create_acc_form.password2 }}
-            </div>
-            {% endblock password2 %}
-            <button type="submit" class="white-btn">CRIAR</button>
-            {{create_acc_form.errors}}
         </form>
-    {% endblock register_form %}
+    </main>
 {% endblock content %}
+

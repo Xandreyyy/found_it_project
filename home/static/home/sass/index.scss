@@ -55,8 +55,6 @@ form{
     .field-wrapper{
         label{
             font-family: Roboto;
-            font-size: 1.05rem;
-            margin-bottom: 0.5em;
             width: max-content;
         }
         .field:focus{
@@ -97,10 +95,10 @@ form{
         }
     }
     form .field-wrapper{
-        label{
-            font-size: 1.2rem;
+        .field{
+            width: 30%;
         }
-        textarea{
+        textarea.field{
             width: 40%;
         }
     }

@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 def create_account(request):
     form = CreateAccount(request.POST)
+    form["username"].css_classes("horror")
     context = {"create_acc_form": form}
 
     if request.method == "POST":

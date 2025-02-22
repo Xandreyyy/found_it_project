@@ -3,4 +3,75 @@
 
 body{
     background-color: #2e2e2e;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: max-content max-content;
+    grid-template-areas: 'reg_header' 'reg_main';
+    row-gap: 3rem;
+}
+
+header{grid-area: reg_header}
+
+main{
+    align-self: center;
+    grid-area: reg_main;
+}
+
+form{
+    background-color: rgb(10, 10, 10);
+    border-radius: 10px;
+    caret-color: rgb(119, 119, 119);
+    max-width: min(75%, 90%);
+    padding: 1em;
+    width: 100%;
+
+    .col-center{
+        row-gap: 1.2em;
+        width: 100%;
+    }
+
+    .field-wrapper{
+        width: min(100%, 340px);
+        label{
+            color: rgb(211, 211, 211);
+            font-family: Roboto;
+            font-weight: bold;
+        }
+        .field{
+            background-color: rgb(24, 24, 24);
+            border: none;
+            color: rgb(131, 131, 131);
+            font-family: Roboto;
+            outline: 1px solid transparent;
+            transition: 0.19s;
+            &:focus{
+                outline: 1px solid white;
+            }
+        }
+    }
+    
+    button[type="submit"]{
+        width: 45%;
+        transition: background-color 0.2s;
+        &:hover{
+            background-color: rgb(228, 228, 228);
+        }
+        &:active{
+            border: none;
+            outline: 1px solid black;
+            color: white;
+            background-color: rgba(43, 43, 43, 0.884);
+        }
+    }
+}
+
+.horror{
+    color: red;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 991px) {
+    form{
+        max-width: 50%;
+    }
 }

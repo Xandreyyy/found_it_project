@@ -10,6 +10,9 @@
     display: flex;
     flex-direction: column;
     label{
+        font-size: 1.05rem;
+        margin-bottom: 0.5em;
+        text-align: start;
         width: max-content;
     }
 }
@@ -20,8 +23,9 @@
     font-size: 1.02rem;
     padding: 0.2em;
     font-family: Roboto;
-    max-width: 90%;
-    width: 100%;
+    &:focus{
+        outline: none;
+    }
 }
 
 .black-btn{
@@ -46,6 +50,11 @@
 .col{
     @extend .flex;
     flex-direction: column;
+}
+
+.col-center{
+    @extend .col;
+    align-items: center;
 }
 
 .a-center{
@@ -81,8 +90,13 @@
 }
 
 @media screen and (min-width: 991px){
-    .field{
-        font-size: 1.1rem;
-        width: 25%;
+    .field-wrapper{
+        .field{
+            font-size: 1.1rem;
+        }
+        label{
+            font-size: 1.2rem;
+        }
     }
+    
 }

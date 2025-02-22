@@ -4,20 +4,28 @@
 {% load compress %}
 
 {% block head_tags %}
-    <link rel="stylesheet" type="text/x-scss" href={% static "account/sass/login.scss" %}>
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href={% static "account/sass/register.scss" %}>
+    {% endcompress %}
 {% endblock %}
 
 {% block content %}
-    <form action="." method="POST">
-        {% csrf_token %}
-        <div class="field-wrapper">
-            <label for="username">Insira seu nome:</label>
-            <input type="text" name="username" id="username">
-        </div>
-        <div class="field-wrapper">
-            <label for="password">Insira sua senha:</label>
-            <input type="password" name="password" id="password">
-        </div>
-        <button type="submit">ENTRAR</button>
-    </form>
+    <main class="j-center">
+        <form action="." method="POST">
+            {% csrf_token %}
+            <div class="col-center">
+                <div class="field-wrapper">
+                    <label for="username">Insira seu nome:</label>
+                    <input type="text" name="username" id="username" class="field">
+                </div>
+                <div class="field-wrapper">
+                    <label for="password">Insira sua senha:</label>
+                    <input type="password" name="password" id="password" class="field">
+                </div>
+                <div class="field-wrapper">
+                    <button type="submit" class="white-btn">ENTRAR</button>
+                </div>
+            </div>
+        </form>
+    </main>
 {% endblock content %}
